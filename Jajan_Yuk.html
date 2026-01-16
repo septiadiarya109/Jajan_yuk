@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Martabak Jebew</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#ff5722;
+  --secondary:#e91e63;
+  --bg:#f3eaea;
+  --dark:#222;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:var(--bg);color:var(--dark)}
+
+/* NAVBAR */
+nav{
+  position:sticky;top:0;z-index:99;
+  background:#fff;padding:14px 32px;
+  display:flex;justify-content:space-between;align-items:center;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+nav h1{color:var(--secondary)}
+nav ul{display:flex;gap:20px;list-style:none}
+nav a{text-decoration:none;color:#444;font-weight:600}
+.cart-badge{background:var(--secondary);color:#fff;padding:4px 10px;border-radius:20px}
+
+/* HERO */
+.hero{
+  margin:25px;padding:90px 30px;border-radius:28px;
+  background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url("mie-jebew.jpg") center/cover;
+  color:#fff;text-align:center;
+}
+.hero h2{font-size:42px}
+
+/* SECTION */
+.section{margin:50px 25px}
+.section h2{margin-bottom:25px}
+
+/* GRID */
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+
+/* CARD */
+.card{
+  background:#fff;border-radius:24px;overflow:hidden;
+  box-shadow:0 15px 35px rgba(0,0,0,.12);transition:.3s;
+}
+.card:hover{transform:translateY(-6px)}
+.card img{width:100%;height:180px;object-fit:cover}
+.card-content{padding:22px}
+.card h3{color:var(--secondary)}
+.card button{
+  width:100%;margin-top:8px;padding:12px;
+  border:none;border-radius:14px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;font-weight:600;cursor:pointer;
+}
+
+/* CART */
+.cart{
+  background:#fff;margin:40px 25px;padding:30px;
+  border-radius:26px;box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+.cart h2{color:var(--secondary);margin-bottom:15px}
+.cart input{
+  width:100%;padding:12px;margin-bottom:15px;
+  border-radius:12px;border:1px solid #ccc;
+}
+
+.cart-item{
+  display:grid;grid-template-columns:1fr auto auto;
+  gap:10px;padding:10px 0;border-bottom:1px dashed #ddd;
+}
+.qty{display:flex;gap:8px;align-items:center}
+.qty button{
+  width:26px;height:26px;border:none;border-radius:50%;
+  background:var(--secondary);color:#fff;cursor:pointer;
+}
+
+.total{text-align:right;font-size:22px;font-weight:700;margin-top:15px}
+.checkout{
+  margin-top:20px;width:100%;padding:15px;
+  border:none;border-radius:18px;
+  background:#25D366;color:#fff;font-size:18px;font-weight:700;
+}
+
+/* NOTA */
+.nota{
+  background:#fff;margin:25px;padding:20px;border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+.nota h3{color:var(--secondary);margin-bottom:10px}
+.nota pre{white-space:pre-wrap;font-size:14px}
+
+/* MOBILE */
+@media(max-width:600px){
+  .hero h2{font-size:32px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h1>Novitri Kuliner</h1>
+<ul>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#cart">Keranjang</a></li>
+<li>🛒 <span class="cart-badge" id="cartCount">0</span></li>
+</ul>
+</nav>
+
+<section class="hero">
+<h2>Pedasnya Nampol 🔥</h2>
+<p>Mie Jebew • Martabak • Jajanan Kekinian</p>
+</section>
+
+<section id="menu" class="section">
+<h2>📋 Menu Favorit</h2>
+
+<div class="menu-grid">
+
+<div class="card">
+<img src="mie-jebew.jpg">
+<div class="card-content">
+<h3>Mie Jebew</h3>
+<button onclick="add('Mie Jebew Level 1',10000)">Level 1 • Rp 10.000</button>
+<button onclick="add('Mie Jebew Level 2',11000)">Level 2 • Rp 11.000</button>
+<button onclick="add('Mie Jebew Level 3',12000)">Level 3 • Rp 12.000</button>
+</div>
+</div>
+
+<div class="card">
+<img src="martabak.jpg">
+<div class="card-content">
+<h3>Martabak Telor (1 Telor)</h3>
+<button onclick="add('Martabak Bakso (1)',5000)">Bakso • Rp 5.000</button>
+<button onclick="add('Martabak Kornet (1)',7000)">Kornet • Rp 7.000</button>
+<button onclick="add('Martabak Sosis (1)',7000)">Sosis • Rp 7.000</button>
+<button onclick="add('Martabak Mix (1)',8000)">Mix • Rp 8.000</button>
+</div>
+</div>
+
+<div class="card">
+<img src="martabak.jpg">
+<div class="card-content">
+<h3>Martabak Telor (2 Telor)</h3>
+<button onclick="add('Martabak Bakso (2)',10000)">Bakso • Rp 10.000</button>
+<button onclick="add('Martabak Kornet (2)',14000)">Kornet • Rp 14.000</button>
+<button onclick="add('Martabak Sosis (2)',14000)">Sosis • Rp 14.000</button>
+<button onclick="add('Martabak Mix (2)',15000)">Mix • Rp 15.000</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="cart" class="cart">
+<h2>🛒 Keranjang Pesanan</h2>
+
+<input type="text" id="nama" placeholder="Nama Pemesan">
+
+<div id="cartList"></div>
+<div class="total">Total: Rp <span id="total">0</span></div>
+<button class="checkout" onclick="checkout()">Pesan via WhatsApp</button>
+</section>
+
+<div id="nota" class="nota" style="display:none">
+<h3>🧾 Nota Pesanan</h3>
+<pre id="notaText"></pre>
+</div>
+
+<script>
+let cart={};
+
+function add(name,price){
+  if(!cart[name]) cart[name]={price,qty:0};
+  cart[name].qty++;
+  render();
+}
+
+function change(name,val){
+  cart[name].qty+=val;
+  if(cart[name].qty<=0) delete cart[name];
+  render();
+}
+
+function render(){
+  let list=document.getElementById("cartList");
+  let total=0,count=0;
+  list.innerHTML="";
+  for(let i in cart){
+    let it=cart[i];
+    total+=it.price*it.qty;
+    count+=it.qty;
+    list.innerHTML+=`
+    <div class="cart-item">
+      <span>${i}</span>
+      <div class="qty">
+        <button onclick="change('${i}',-1)">−</button>
+        ${it.qty}
+        <button onclick="change('${i}',1)">+</button>
+      </div>
+      <span>Rp ${it.price*it.qty}</span>
+    </div>`;
+  }
+  document.getElementById("total").innerText=total;
+  document.getElementById("cartCount").innerText=count;
+}
+
+function checkout(){
+  let nama=document.getElementById("nama").value;
+  if(!nama) return alert("Masukkan nama pemesan");
+  if(!Object.keys(cart).length) return alert("Keranjang kosong");
+
+  let nota=`NOVITRI KULINER\nNama: ${nama}\n------------------\n`;
+  let msg=`Halo, saya ${nama}%0AIngin pesan:%0A`;
+  let total=0;
+
+  for(let i in cart){
+    let it=cart[i];
+    nota+=`${i} x${it.qty} = Rp ${it.price*it.qty}\n`;
+    msg+=`- ${i} x${it.qty} = Rp ${it.price*it.qty}%0A`;
+    total+=it.price*it.qty;
+  }
+
+  nota+=`------------------\nTotal: Rp ${total}`;
+  msg+=`%0ATotal: Rp ${total}`;
+
+  document.getElementById("nota").style.display="block";
+  document.getElementById("notaText").innerText=nota;
+
+  window.open("https://wa.me/+6281296175061?text="+msg);
+}
+</script>
+
+</body>
+</html>
